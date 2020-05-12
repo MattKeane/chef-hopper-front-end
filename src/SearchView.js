@@ -5,6 +5,8 @@ import { Loader } from "semantic-ui-react"
 
 export default function SearchView() {
 	const [loading, setLoading] = useState(false)
+	const [recipes, setRecipes] = useState([])
+
 	const getRecipes = async (searchTerm) => {
 		try {
 			setLoading(true)
@@ -13,7 +15,11 @@ export default function SearchView() {
 			const everySpace = new RegExp(/\s/, "g")
 			const apiSearchTerm = searchTerm.replace(everySpace, "+")
 			const searchResponse = await fetch(url + apiSearchTerm)
-			console.log(searchResponse.json())
+			if (searchResponse.status === 200) {
+				const searchJson = await searchResponse.json()
+				console.log(searchJson)
+				setRecipes(searchJson.data)
+			}			
 			setLoading(false)
 		} catch (err) {
 			console.log(err)
@@ -31,7 +37,9 @@ export default function SearchView() {
 					Hopping to your recipes
 				</Loader>
 				:
-				<SearchResults />
+				<SearchResults
+					recipes={recipes} 
+				/>
 			}
 		</React.Fragment>
 		)
