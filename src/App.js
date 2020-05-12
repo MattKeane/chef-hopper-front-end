@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import SearchView from "./SearchView"
+import RecipeView from "./RecipeView"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -26,10 +27,17 @@ function App() {
 
   return (
     <div className="App">
-      <SearchView
-        recipes={recipes}
-        getRecipes={getRecipes}
-      />
+      {
+        recipeToShow === -1
+        ?
+        <SearchView
+          recipes={recipes}
+          getRecipes={getRecipes}
+          showRecipe={setRecipeToShow}
+        />
+        :
+        <RecipeView />
+      }
     </div>
   );
 }

@@ -18,7 +18,8 @@ export default function SearchView(props) {
 				</Loader>
 				:
 				<SearchResults
-					recipes={props.recipes} 
+					recipes={props.recipes}
+					showRecipe={props.showRecipe}
 				/>
 			}
 		</div>
