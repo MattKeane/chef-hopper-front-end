@@ -13,7 +13,7 @@ export default function SearchForm(props) {
 				onChange={e => setSearchTerm(e.target.value)}
 			/>
 			<Button
-				onClick={e => console.log({searchTerm})}
+				onClick={e => props.getRecipes(searchTerm)}
 			>
 				Search
 			</Button>
