@@ -9,6 +9,7 @@ export default function SearchView() {
 			const everySpace = new RegExp(/\s/, "g")
 			const apiSearchTerm = searchTerm.replace(everySpace, "+")
 			const searchResponse = await fetch(url + apiSearchTerm)
+			console.log(searchResponse.json())
 		} catch (err) {
 			console.log(err)
 		}
