@@ -36,7 +36,9 @@ function App() {
           showRecipe={setRecipeToShow}
         />
         :
-        <RecipeView />
+        <RecipeView
+          recipe={recipes[recipeToShow]}
+        />
       }
     </div>
   );
