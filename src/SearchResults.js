@@ -4,13 +4,13 @@ export default function SearchResults(props) {
 	const recipes = props.recipes.map(recipe => {
 		return (
 			<li key={recipe.id}>
-				{recipe.title}
+				<span className="recipe-link">{recipe.title}</span>
 			</li>
 		)
 	})
 	return(
 		<React.Fragment>
-			<ul>
+			<ul className="recipe-list">
 				{recipes}
 			</ul>
 		</React.Fragment>

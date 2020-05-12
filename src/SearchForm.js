@@ -4,7 +4,7 @@ import { Input, Button, Form } from "semantic-ui-react"
 export default function SearchForm(props) {
 	const [searchTerm, setSearchTerm] = useState("")
 	return(
-		<React.Fragment>
+		<div className="SearchForm">
 			<Input
 				name="search"
 				icon="search"
@@ -17,6 +17,6 @@ export default function SearchForm(props) {
 			>
 				Search
 			</Button>
-		</React.Fragment>
+		</div>
 	)
 }
