@@ -1,16 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import { Input, Button, Form } from "semantic-ui-react"
 
 export default function SearchForm(props) {
+	const [searchTerm, setSearchTerm] = useState("")
 	return(
 		<React.Fragment>
-			<Form>
-				<Input
-					icon="search"
-					placeholder="Search for Recipes"
-				/>
-				<Button>Search</Button>
-			</Form>
+			<Input
+				name="search"
+				icon="search"
+				placeholder="Search for Recipes"
+				value={searchTerm}
+				onChange={e => setSearchTerm(e.target.value)}
+			/>
+			<Button
+				onClick={e => console.log({searchTerm})}
+			>
+				Search
+			</Button>
 		</React.Fragment>
 	)
 }
