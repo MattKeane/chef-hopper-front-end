@@ -3,11 +3,21 @@ import { Menu } from "semantic-ui-react"
 
 export default function NavBar(props) {
 
+	const backToSearch = () => {
+		props.setRecipeToShow(-1)
+	}
+	
 	return (
 		<Menu>
-			<Menu.Item>
-				Back to Search
-			</Menu.Item>
+			{
+				props.recipeToShow !== -1
+				&&
+				<Menu.Item
+					onClick={backToSearch}
+				>
+					Back to Search
+				</Menu.Item>
+			}			
 		</Menu>
 	)
 }

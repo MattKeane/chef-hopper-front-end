@@ -4,6 +4,10 @@ div.App {
   flex-direction: column;
 }
 
+div.App h1{
+  text-align: center;
+}
+
 div.SearchView {
   margin: 0 auto;
 }

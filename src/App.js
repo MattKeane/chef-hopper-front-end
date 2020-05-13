@@ -35,7 +35,11 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar
+        recipeToShow={recipeToShow}
+        setRecipeToShow={setRecipeToShow} 
+        />
+      <h1>Chef Hopper</h1>
       {
         recipeToShow === -1
         ?
