@@ -7,17 +7,24 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [recipes, setRecipes] = useState([])
   const [recipeToShow, setRecipeToShow] = useState(-1)
+  const [message, setMessage] = useState("")
 
   const getRecipes = async (searchTerm) => {
     try {
+      setMessage("")
       setLoading(true)
       const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/search/"
       const everySpace = new RegExp(/\s/, "g")
       const apiSearchTerm = searchTerm.replace(everySpace, "+")
       const searchResponse = await fetch(url + apiSearchTerm)
-      if (searchResponse.status === 200) {
+      if (searchResponse.status === 200 || searchResponse.status === 201) {
         const searchJson = await searchResponse.json()
-        setRecipes(searchJson.data)
+        if (searchJson.data.length > 0) {
+          setRecipes(searchJson.data)
+        } else {
+          console.log("No data")
+          setMessage(searchJson.message)
+        }
       }     
       setLoading(false)
     } catch (err) {
@@ -34,6 +41,8 @@ function App() {
           recipes={recipes}
           getRecipes={getRecipes}
           showRecipe={setRecipeToShow}
+          message={message}
+          loading={loading}
         />
         :
         <RecipeView

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import SearchForm from "./SearchForm"
 import SearchResults from "./SearchResults"
 import { Loader } from "semantic-ui-react"
@@ -10,6 +10,7 @@ export default function SearchView(props) {
 			<SearchForm
 				getRecipes={props.getRecipes}
 			/>
+			<p>{props.message}</p>
 			{
 				props.loading
 				?
