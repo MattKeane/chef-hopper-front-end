@@ -20,12 +20,18 @@ export default function RecipeView(props) {
 	return (
 		<div className="recipe">
 			<h3>{props.recipe.title}</h3>
-			<ul className="ingredient-list">
-				{ingredients}
-			</ul>
-			<ul className="instruction-list">
-				{instructions}
-			</ul>
+			<h5>Ingredients</h5>
+			<div className="ingredients">
+				<ul className="ingredient-list">
+					{ingredients}
+				</ul>
+			</div>
+			<h5>Instructions</h5>
+			<div className="instructions">			
+				<ol className="instruction-list">
+					{instructions}
+				</ol>
+			</div>
 		</div>
 	)
 }

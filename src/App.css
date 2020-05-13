@@ -22,3 +22,33 @@ span.recipe-link {
 span.recipe-link:hover {
   text-decoration: underline;
 }
+
+div.recipe {
+  margin: 0 auto;
+  max-width: 750px;
+}
+
+div.recipe h3 {
+  text-align: center;
+  /*display: flex;*/
+}
+
+div.recipe h5 {
+  text-align: center;
+}
+
+div.ingredients {
+  display: flex;
+}
+
+ul.ingredient-list {
+  margin: 0 auto;
+}
+
+div.instructions {
+  display: flex;
+}
+
+ol.instruction-list {
+  margin: 0 auto;
+}
