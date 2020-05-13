@@ -1,6 +1,7 @@
 div.App {
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
 }
 
 div.SearchView {

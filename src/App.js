@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import SearchView from "./SearchView"
 import RecipeView from "./RecipeView"
+import NavBar from "./NavBar"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       {
         recipeToShow === -1
         ?
