@@ -3,6 +3,8 @@ import './App.css';
 import SearchView from "./SearchView"
 import RecipeView from "./RecipeView"
 import NavBar from "./NavBar"
+import LogInModal from "./LogInModal"
+
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -10,6 +12,8 @@ function App() {
   const [recipeToShow, setRecipeToShow] = useState(-1)
   const [message, setMessage] = useState("")
   const [currentUser, setCurrentUser] = useState(false)
+  const [loggingIn, setLoggingIn] = useState(false)
+  const [registering, setRegistering] = useState(false)
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -40,6 +44,7 @@ function App() {
         recipeToShow={recipeToShow}
         setRecipeToShow={setRecipeToShow}
         currentUser={currentUser}
+        setLoggingIn={setLoggingIn}
         />
       <h1>Chef Hopper</h1>
       {
@@ -55,6 +60,13 @@ function App() {
         :
         <RecipeView
           recipe={recipes[recipeToShow]}
+        />
+      }
+      {
+        loggingIn
+        &&
+        <LogInModal
+          setLoggingIn={setLoggingIn}
         />
       }
     </div>

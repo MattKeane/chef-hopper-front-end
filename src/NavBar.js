@@ -7,6 +7,10 @@ export default function NavBar(props) {
 		props.setRecipeToShow(-1)
 	}
 
+	const openLogInModal = () => {
+		props.setLoggingIn(true)	
+	}
+
 	return (
 		<Menu>
 			{
@@ -28,7 +32,9 @@ export default function NavBar(props) {
 				</Menu.Menu>
 				:
 				<Menu.Menu position="right">
-					<Menu.Item>
+					<Menu.Item
+						onClick={openLogInModal}
+					>
 						Log In
 					</Menu.Item>
 					<Menu.Item>
