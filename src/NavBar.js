@@ -18,7 +18,7 @@ export default function NavBar(props) {
 	const logOut = async () => {
 		try {
 			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/logout/"
-			const logoutResponse = await fetch(url)
+			await fetch(url)
 			props.setCurrentUser(false)
 		} catch (err) {
 			console.log(err)

@@ -3,9 +3,38 @@ import { Modal, Input, Button } from "semantic-ui-react"
 
 export default function RegisterModal(props) {
 
-const closeRegisterModal = () => {
+	const [username, setUsername] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [verifyPassword, setVerifyPassword] = useState("")
+
+	const closeRegisterModal = () => {
 		props.setRegistering(false)
 	}
+
+	const handleUsernameChange = (e) => {
+		setUsername(e.target.value)
+	}
+
+	const handleEmailChange = (e) => {
+		setEmail(e.target.value)
+	}
+
+	const handlePasswordChange = (e) => {
+		setPassword(e.target.value)
+	}
+
+	const handleVerifyPasswordChange = (e) => {
+		setVerifyPassword(e.target.value)
+	}
+
+	const handleClick = () => {
+		console.log(username)
+		console.log(email)
+		console.log(password)
+		console.log(verifyPassword)
+	}
+
 
 	return (
 		<Modal
@@ -20,8 +49,8 @@ const closeRegisterModal = () => {
 						label="Username"
 						placeholder="Enter Username"
 						name="username"
-						// value={username}
-						// onChange={handleUsernameChange}
+						value={username}
+						onChange={handleUsernameChange}
 					/>
 				</div>
 				<div>
@@ -29,6 +58,8 @@ const closeRegisterModal = () => {
 						label="Email"
 						placeholder="Enter Email"
 						name="email"
+						value={email}
+						onChange={handleEmailChange}
 					/>
 				</div>
 				<div>
@@ -36,8 +67,8 @@ const closeRegisterModal = () => {
 						type="password"
 						label="Password"
 						name="password"
-						// value={password}
-						// onChange={handlePasswordChange}
+						value={password}
+						onChange={handlePasswordChange}
 					/>
 				</div>
 				<div>
@@ -45,11 +76,13 @@ const closeRegisterModal = () => {
 						type="password"
 						label="Re-enter Password"
 						name="verifyPassword"
+						value={verifyPassword}
+						onChange={handleVerifyPasswordChange}
 					/>
 				</div>
 				<div>
 					<Button
-						// onClick={handleClick}
+						onClick={handleClick}
 					>
 						Register
 					</Button>
