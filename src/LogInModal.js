@@ -2,21 +2,44 @@ import React, { useState } from "react"
 import { Modal, Input, Button } from "semantic-ui-react"
 
 export default function LogInModal(props) {
-	const [email, setEmail] = useState("")
+	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 
 	const closeLogInModal = () => {
 		props.setLoggingIn(false)
 	}
 
-	const handleEmailChange = (e) => {
-		setEmail(e.target.value)
-		console.log(email)
+	const handleUsernameChange = (e) => {
+		setUsername(e.target.value)
 	}
 
 	const handlePasswordChange = (e) => {
 		setPassword(e.target.value)
-		console.log(password)
+	}
+
+	const handleClick = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/login/"
+			const payload = {
+				username: username,
+				password: password
+			}
+			const logInResponse = await fetch(url, {
+				method: "POST",
+				body: JSON.stringify(payload),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+			const logInJson = await logInResponse.json()
+			if (logInJson.status === 200) {
+				console.log("User logged in")
+			} else {
+				console.log("Log in failed")
+			}
+		} catch (err) {
+			console.log(err)
+		}
 	}
 
 	return (
@@ -29,11 +52,11 @@ export default function LogInModal(props) {
 				<h3>Enter Email and Password</h3>
 				<div>
 					<Input
-						label="Email"
-						placeholder="Enter Email"
-						name="email"
-						value={email}
-						onChange={handleEmailChange}
+						label="Username"
+						placeholder="Enter Username"
+						name="username"
+						value={username}
+						onChange={handleUsernameChange}
 					/>
 				</div>
 				<div>
@@ -46,7 +69,9 @@ export default function LogInModal(props) {
 					/>
 				</div>
 				<div>
-					<Button>
+					<Button
+						onClick={handleClick}
+					>
 						Sign In
 					</Button>
 				</div>
