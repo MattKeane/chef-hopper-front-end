@@ -11,6 +11,10 @@ export default function NavBar(props) {
 		props.setLoggingIn(true)	
 	}
 
+	const openRegisterModal = () => {
+		props.setRegistering(true)
+	}
+
 	const logOut = async () => {
 		try {
 			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/logout/"
@@ -49,7 +53,9 @@ export default function NavBar(props) {
 					>
 						Log In
 					</Menu.Item>
-					<Menu.Item>
+					<Menu.Item
+						onClick={openRegisterModal}
+					>
 						Register
 					</Menu.Item>
 				</Menu.Menu>

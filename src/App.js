@@ -4,6 +4,7 @@ import SearchView from "./SearchView"
 import RecipeView from "./RecipeView"
 import NavBar from "./NavBar"
 import LogInModal from "./LogInModal"
+import RegisterModal from "./RegisterModal"
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         currentUser={currentUser}
         setLoggingIn={setLoggingIn}
         setCurrentUser={setCurrentUser}
+        setRegistering={setRegistering}
         />
       <h1>Chef Hopper</h1>
       {
@@ -69,6 +71,13 @@ function App() {
         <LogInModal
           setLoggingIn={setLoggingIn}
           setCurrentUser={setCurrentUser}
+        />
+      }
+      {
+        registering
+        &&
+        <RegisterModal
+          setRegistering={setRegistering}
         />
       }
     </div>
