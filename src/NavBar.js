@@ -6,7 +6,7 @@ export default function NavBar(props) {
 	const backToSearch = () => {
 		props.setRecipeToShow(-1)
 	}
-	
+
 	return (
 		<Menu>
 			{
@@ -17,7 +17,25 @@ export default function NavBar(props) {
 				>
 					Back to Search
 				</Menu.Item>
-			}			
+			}
+			{
+				props.loggedInUser
+				?
+				<Menu.Menu position="right">
+					<Menu.Item>
+						Log Out
+					</Menu.Item>
+				</Menu.Menu>
+				:
+				<Menu.Menu position="right">
+					<Menu.Item>
+						Log In
+					</Menu.Item>
+					<Menu.Item>
+						Register
+					</Menu.Item>
+				</Menu.Menu>
+			}
 		</Menu>
 	)
 }

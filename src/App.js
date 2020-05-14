@@ -9,6 +9,7 @@ function App() {
   const [recipes, setRecipes] = useState([])
   const [recipeToShow, setRecipeToShow] = useState(-1)
   const [message, setMessage] = useState("")
+  const [currentUser, setCurrentUser] = useState(false)
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -37,7 +38,8 @@ function App() {
     <div className="App">
       <NavBar
         recipeToShow={recipeToShow}
-        setRecipeToShow={setRecipeToShow} 
+        setRecipeToShow={setRecipeToShow}
+        currentUser={currentUser}
         />
       <h1>Chef Hopper</h1>
       {
