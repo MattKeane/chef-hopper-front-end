@@ -78,6 +78,7 @@ function App() {
         &&
         <RegisterModal
           setRegistering={setRegistering}
+          setCurrentUser={setCurrentUser}
         />
       }
     </div>
