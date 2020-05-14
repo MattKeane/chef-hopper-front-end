@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Modal } from "semantic-ui-react"
+import { Modal, Input, Button } from "semantic-ui-react"
 
 export default function LogInModal(props) {
 	const closeLogInModal = () => {
@@ -12,7 +12,27 @@ export default function LogInModal(props) {
 			closeIcon={true}
 			onClose={closeLogInModal}
 		>
-			This is the log in Modal
+			<div className="login-form">
+				<h3>Enter Email and Password</h3>
+				<div>
+					<Input
+						label="Email"
+						placeholder="Enter Email"
+						name="email"
+					/>
+				</div>
+				<div>
+					<Input
+						type="password"
+						label="Password"
+					/>
+				</div>
+				<div>
+					<Button>
+						Sign In
+					</Button>
+				</div>
+			</div>
 		</Modal>
 	)
 }
