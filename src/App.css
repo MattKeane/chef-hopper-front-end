@@ -69,3 +69,15 @@ div.login-form {
 div.login-form div{
   margin: 5px;
 }
+
+div.register-form {
+  text-align: center;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+div.register-form div{
+  margin: 5px;
+}

@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { Modal } from "semantic-ui-react"
+import { Modal, Input, Button } from "semantic-ui-react"
 
 export default function RegisterModal(props) {
 
-	const closeRegisterModal = () => {
+const closeRegisterModal = () => {
 		props.setRegistering(false)
 	}
 
@@ -13,7 +13,48 @@ export default function RegisterModal(props) {
 			closeIcon={true}
 			onClose={closeRegisterModal}
 		>
-			This is the register modal.
+			<div className="register-form">
+				<h3>Enter Registration Information</h3>
+				<div>
+					<Input
+						label="Username"
+						placeholder="Enter Username"
+						name="username"
+						// value={username}
+						// onChange={handleUsernameChange}
+					/>
+				</div>
+				<div>
+					<Input
+						label="Email"
+						placeholder="Enter Email"
+						name="email"
+					/>
+				</div>
+				<div>
+					<Input
+						type="password"
+						label="Password"
+						name="password"
+						// value={password}
+						// onChange={handlePasswordChange}
+					/>
+				</div>
+				<div>
+					<Input
+						type="password"
+						label="Re-enter Password"
+						name="verifyPassword"
+					/>
+				</div>
+				<div>
+					<Button
+						// onClick={handleClick}
+					>
+						Register
+					</Button>
+				</div>
+			</div>			
 		</Modal>
 	)
 
