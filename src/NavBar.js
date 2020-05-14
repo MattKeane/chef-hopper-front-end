@@ -11,6 +11,16 @@ export default function NavBar(props) {
 		props.setLoggingIn(true)	
 	}
 
+	const logOut = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/logout/"
+			const logoutResponse = await fetch(url)
+			props.setCurrentUser(false)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
 	return (
 		<Menu>
 			{
@@ -26,7 +36,9 @@ export default function NavBar(props) {
 				props.currentUser
 				?
 				<Menu.Menu position="right">
-					<Menu.Item>
+					<Menu.Item
+						onClick={logOut}
+					>
 						Log Out
 					</Menu.Item>
 				</Menu.Menu>

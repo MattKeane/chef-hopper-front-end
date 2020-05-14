@@ -45,6 +45,7 @@ function App() {
         setRecipeToShow={setRecipeToShow}
         currentUser={currentUser}
         setLoggingIn={setLoggingIn}
+        setCurrentUser={setCurrentUser}
         />
       <h1>Chef Hopper</h1>
       {
