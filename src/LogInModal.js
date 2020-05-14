@@ -4,6 +4,7 @@ import { Modal, Input, Button } from "semantic-ui-react"
 export default function LogInModal(props) {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
+	const [message, setMessage] = useState("")
 
 	const closeLogInModal = () => {
 		props.setLoggingIn(false)
@@ -33,9 +34,10 @@ export default function LogInModal(props) {
 			})
 			const logInJson = await logInResponse.json()
 			if (logInJson.status === 200) {
-				console.log("User logged in")
+				props.setCurrentUser(logInJson.data)
+				closeLogInModal()
 			} else {
-				console.log("Log in failed")
+				setMessage(logInJson.message)
 			}
 		} catch (err) {
 			console.log(err)
@@ -50,6 +52,7 @@ export default function LogInModal(props) {
 		>
 			<div className="login-form">
 				<h3>Enter Email and Password</h3>
+				<p>{message}</p>
 				<div>
 					<Input
 						label="Username"

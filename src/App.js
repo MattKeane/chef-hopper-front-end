@@ -67,6 +67,7 @@ function App() {
         &&
         <LogInModal
           setLoggingIn={setLoggingIn}
+          setCurrentUser={setCurrentUser}
         />
       }
     </div>

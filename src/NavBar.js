@@ -23,7 +23,7 @@ export default function NavBar(props) {
 				</Menu.Item>
 			}
 			{
-				props.loggedInUser
+				props.currentUser
 				?
 				<Menu.Menu position="right">
 					<Menu.Item>
