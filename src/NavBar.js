@@ -1,5 +1,7 @@
 import React from "react"
 import { Menu } from "semantic-ui-react"
+import RecipeActions from "./RecipeActions"
+
 
 export default function NavBar(props) {
 
@@ -20,6 +22,7 @@ export default function NavBar(props) {
 			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/logout/"
 			await fetch(url)
 			props.setCurrentUser(false)
+			props.setSavedRecipes([])
 		} catch (err) {
 			console.log(err)
 		}
@@ -30,11 +33,9 @@ export default function NavBar(props) {
 			{
 				props.recipeToShow !== -1
 				&&
-				<Menu.Item
-					onClick={backToSearch}
-				>
-					Back to Search
-				</Menu.Item>
+				<RecipeActions
+					setRecipeToShow={props.setRecipeToShow}
+				/>
 			}
 			{
 				props.currentUser

@@ -49,6 +49,7 @@ function App() {
         setLoggingIn={setLoggingIn}
         setCurrentUser={setCurrentUser}
         setRegistering={setRegistering}
+        setSavedRecipes={setSavedRecipes}
         />
       <h1>Chef Hopper</h1>
       {
