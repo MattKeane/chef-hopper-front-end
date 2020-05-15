@@ -32,12 +32,18 @@ export default function LogInModal(props) {
 					"Content-Type": "application/json"
 				}
 			})
-			const logInJson = await logInResponse.json()
-			if (logInJson.status === 200) {
+			if (logInResponse.status === 200) {
+				const logInJson = await logInResponse.json()
 				props.setCurrentUser(logInJson.data)
+				const saved_recipes_url = process.env.REACT_APP_API_URL + "/api/v1/recipes/saved/"
+				const savedRecipesResponse = await fetch(saved_recipes_url, {
+					credentials: "include"
+				})
+				const savedRecipesJson = await savedRecipesResponse.json()
+				console.log(savedRecipesJson.data)
 				closeLogInModal()
 			} else {
-				setMessage(logInJson.message)
+				setMessage("Invalid username or password")
 			}
 		} catch (err) {
 			console.log(err)

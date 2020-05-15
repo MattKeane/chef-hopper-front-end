@@ -15,6 +15,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(false)
   const [loggingIn, setLoggingIn] = useState(false)
   const [registering, setRegistering] = useState(false)
+  const [savedRecipes, setSavedRecipes] = useState([])
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -71,6 +72,7 @@ function App() {
         <LogInModal
           setLoggingIn={setLoggingIn}
           setCurrentUser={setCurrentUser}
+          setSavedRecipes={setSavedRecipes}
         />
       }
       {
