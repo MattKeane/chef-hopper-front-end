@@ -4,7 +4,7 @@ export default function SearchResults(props) {
 
 	const handleClick = (recipeIndex) => {
 		props.showRecipe(recipeIndex)
-		props.checkForSavedRecipe()
+		props.checkForSavedRecipe(recipeIndex)
 	}
 
 	const recipes = props.recipes.map( (recipe, i) => {

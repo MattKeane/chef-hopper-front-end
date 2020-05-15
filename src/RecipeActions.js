@@ -20,6 +20,7 @@ export default function RecipeActions(props) {
 				&&
 				<SaveToggleButton
 					currentRecipeIsSaved={props.currentRecipeIsSaved} 
+					saveRecipe={props.saveRecipe}
 				/>
 			}
 		</React.Fragment>

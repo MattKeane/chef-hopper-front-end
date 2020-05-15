@@ -33,6 +33,7 @@ export default function NavBar(props) {
 					setRecipeToShow={props.setRecipeToShow}
 					currentRecipeIsSaved={props.currentRecipeIsSaved}
 					currentUser={props.currentUser}
+					saveRecipe={props.saveRecipe}
 				/>
 			}
 			{

@@ -41,17 +41,40 @@ function App() {
     }
   }
 
-  const checkForSavedRecipe = () => {
-    if (recipeToShow !== -1) {
+  const checkForSavedRecipe = (indexOfRecipe) => {
+    console.log("checking for saved recipe")
+    console.log(indexOfRecipe)
+    if (indexOfRecipe !== -1) {
       const savedRecipeIds = []
       savedRecipes.forEach( recipe => {
         savedRecipeIds.push(recipe.id)
       })
-      if (savedRecipeIds.includes(recipes[recipeToShow].id)) {
+      console.log(savedRecipeIds)
+      console.log(recipes[indexOfRecipe].id)
+      if (savedRecipeIds.includes(recipes[indexOfRecipe].id)) {
+        console.log("setting to true")
         setCurrentRecipeIsSaved(true)
-      } 
-    } 
-    setCurrentRecipeIsSaved(false)
+      } else {
+        setCurrentRecipeIsSaved(false)
+      }
+    } else {
+      setCurrentRecipeIsSaved(false)
+    }
+  }
+
+  const saveRecipe = async () => {
+    console.log(recipeToShow)
+    const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/save/" + recipes[recipeToShow].id
+    const saveRecipeResponse = await fetch(url, {credentials: "include"})
+    console.log(saveRecipeResponse)
+    const saveRecipeJson = await saveRecipeResponse.json()
+    console.log(saveRecipeJson)
+    if (saveRecipeJson.status === 200) {
+      await setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
+      console.log("recipeToShow")
+      console.log(recipeToShow)
+    }
+    checkForSavedRecipe(recipeToShow)
   }
 
   return (
@@ -65,6 +88,7 @@ function App() {
         setRegistering={setRegistering}
         setSavedRecipes={setSavedRecipes}
         currentRecipeIsSaved={currentRecipeIsSaved}
+        saveRecipe={saveRecipe}
         />
       <h1>Chef Hopper</h1>
       {
