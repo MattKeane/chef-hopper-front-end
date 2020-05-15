@@ -1,20 +1,20 @@
 import React from "react"
-import Menu from "semantic-ui-react"
+import { Menu } from "semantic-ui-react"
 
 export default function SaveToggleButton(props) {
 	return (
-		<React.fragment>
+		<React.Fragment>
 			{
-				props.currentUser
+				props.currentRecipeIsSaved
 				?
-				<Menu.Item>
-					Save Recipe
-				</Menu.Item>
-				:
 				<Menu.Item>
 					Remove Saved Recipe
 				</Menu.Item>
+				:
+				<Menu.Item>
+					Save Recipe
+				</Menu.Item>
 			}
-		</React.fragment>
+		</React.Fragment>
 	)
 }

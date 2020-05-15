@@ -1,5 +1,6 @@
 import React from "react"
 import { Menu } from "semantic-ui-react"
+import SaveToggleButton from "./SaveToggleButton"
 
 export default function RecipeActions(props) {
 
@@ -14,6 +15,13 @@ export default function RecipeActions(props) {
 			>
 				Back to Search
 			</Menu.Item>
+			{
+				props.currentUser
+				&&
+				<SaveToggleButton
+					currentRecipeIsSaved={props.currentRecipeIsSaved} 
+				/>
+			}
 		</React.Fragment>
 	)
 }

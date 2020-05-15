@@ -5,10 +5,6 @@ import RecipeActions from "./RecipeActions"
 
 export default function NavBar(props) {
 
-	const backToSearch = () => {
-		props.setRecipeToShow(-1)
-	}
-
 	const openLogInModal = () => {
 		props.setLoggingIn(true)	
 	}
@@ -35,6 +31,8 @@ export default function NavBar(props) {
 				&&
 				<RecipeActions
 					setRecipeToShow={props.setRecipeToShow}
+					currentRecipeIsSaved={props.currentRecipeIsSaved}
+					currentUser={props.currentUser}
 				/>
 			}
 			{

@@ -16,6 +16,7 @@ function App() {
   const [loggingIn, setLoggingIn] = useState(false)
   const [registering, setRegistering] = useState(false)
   const [savedRecipes, setSavedRecipes] = useState([])
+  const [currentRecipeIsSaved, setCurrentRecipeIsSaved] = useState(false)
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -40,6 +41,19 @@ function App() {
     }
   }
 
+  const checkForSavedRecipe = () => {
+    if (recipeToShow !== -1) {
+      const savedRecipeIds = []
+      savedRecipes.forEach( recipe => {
+        savedRecipeIds.push(recipe.id)
+      })
+      if (savedRecipeIds.includes(recipes[recipeToShow].id)) {
+        setCurrentRecipeIsSaved(true)
+      } 
+    } 
+    setCurrentRecipeIsSaved(false)
+  }
+
   return (
     <div className="App">
       <NavBar
@@ -50,6 +64,7 @@ function App() {
         setCurrentUser={setCurrentUser}
         setRegistering={setRegistering}
         setSavedRecipes={setSavedRecipes}
+        currentRecipeIsSaved={currentRecipeIsSaved}
         />
       <h1>Chef Hopper</h1>
       {
@@ -61,6 +76,7 @@ function App() {
           showRecipe={setRecipeToShow}
           message={message}
           loading={loading}
+          checkForSavedRecipe={checkForSavedRecipe}        
         />
         :
         <RecipeView

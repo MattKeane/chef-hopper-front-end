@@ -21,6 +21,7 @@ export default function SearchView(props) {
 				<SearchResults
 					recipes={props.recipes}
 					showRecipe={props.showRecipe}
+					checkForSavedRecipe={props.checkForSavedRecipe}
 				/>
 			}
 		</div>

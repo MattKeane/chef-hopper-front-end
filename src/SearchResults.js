@@ -1,9 +1,10 @@
 import React from "react"
 
 export default function SearchResults(props) {
-	
+
 	const handleClick = (recipeIndex) => {
 		props.showRecipe(recipeIndex)
+		props.checkForSavedRecipe()
 	}
 
 	const recipes = props.recipes.map( (recipe, i) => {
