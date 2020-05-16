@@ -38,6 +38,15 @@ export default function NavBar(props) {
 			}
 			{
 				props.currentUser
+				&&
+				<Menu.Item
+					onClick={ () => {props.getSavedRecipes()}}
+				>
+					Saved Recipes 
+				</Menu.Item>
+			}
+			{
+				props.currentUser
 				?
 				<Menu.Menu position="right">
 					<Menu.Item

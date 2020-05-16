@@ -9,22 +9,20 @@ export default function SearchResults(props) {
 
 	const recipes = props.recipes.map( (recipe, i) => {
 		return (
-			<li key={recipe.id}>
+			<p key={recipe.id}>
 				<span 
 					className="recipe-link"
 					onClick={ () => {handleClick(i)}}
 				>
 					{recipe.title}
 				</span>
-			</li>
+			</p>
 		)
 	})
 
 	return(
-		<React.Fragment>
-			<ul className="recipe-list">
-				{recipes}
-			</ul>
-		</React.Fragment>
+		<div className="search-results">
+			{recipes}			
+		</div>
 	)
 }

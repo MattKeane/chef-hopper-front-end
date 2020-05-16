@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Input, Button, Form } from "semantic-ui-react"
+import { Input, Button } from "semantic-ui-react"
 
 export default function SearchForm(props) {
 	const [searchTerm, setSearchTerm] = useState("")

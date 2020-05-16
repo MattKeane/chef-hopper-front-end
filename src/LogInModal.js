@@ -20,12 +20,13 @@ export default function LogInModal(props) {
 
 	const handleClick = async () => {
 		try {
-			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/login/"
+			const url = process.env.REACT_APP_API_URL + "/api/v1/users/login"
 			const payload = {
 				username: username,
 				password: password
 			}
 			const logInResponse = await fetch(url, {
+				credentials: "include",
 				method: "POST",
 				body: JSON.stringify(payload),
 				headers: {
@@ -35,13 +36,13 @@ export default function LogInModal(props) {
 			if (logInResponse.status === 200) {
 				const logInJson = await logInResponse.json()
 				props.setCurrentUser(logInJson)
-				const saved_recipes_url = process.env.REACT_APP_API_URL + "/api/v1/recipes/saved/"
-				const savedRecipesResponse = await fetch(saved_recipes_url, {
-					credentials: "include"
-				})
-				const savedRecipesJson = await savedRecipesResponse.json()
-				console.log(savedRecipesJson.data)
-				props.setSavedRecipes(savedRecipesJson.data)
+				// const saved_recipes_url = process.env.REACT_APP_API_URL + "/api/v1/recipes/saved/"
+				// const savedRecipesResponse = await fetch(saved_recipes_url, {
+				// 	credentials: "include"
+				// })
+				// const savedRecipesJson = await savedRecipesResponse.json()
+				// console.log(savedRecipesJson.data)
+				// props.setSavedRecipes(savedRecipesJson.data)
 				closeLogInModal()
 			} else {
 				setMessage("Invalid username or password")

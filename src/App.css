@@ -2,10 +2,13 @@ div.App {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 div.App h1{
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 div.SearchView {
@@ -20,10 +23,6 @@ ul.recipe-list {
   list-style: none;
 }
 
-span.recipe-link {
-  color: green;
-}
-
 span.recipe-link:hover {
   text-decoration: underline;
 }
@@ -31,6 +30,10 @@ span.recipe-link:hover {
 div.recipe {
   margin: 0 auto;
   max-width: 750px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px orange solid;
 }
 
 div.recipe h3 {
@@ -79,4 +82,16 @@ div.register-form {
 
 div.register-form div{
   margin: 5px;
+}
+
+div.search-results {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  /*display: flex;*/
+  border: 2px orange solid;
+}
+
+div.search-results ul{
+  margin: 0 auto;
 }

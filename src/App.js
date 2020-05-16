@@ -42,17 +42,12 @@ function App() {
   }
 
   const checkForSavedRecipe = (indexOfRecipe) => {
-    console.log("checking for saved recipe")
-    console.log(indexOfRecipe)
     if (indexOfRecipe !== -1) {
       const savedRecipeIds = []
-      savedRecipes.forEach( recipe => {
-        savedRecipeIds.push(recipe.id)
-      })
-      console.log(savedRecipeIds)
-      console.log(recipes[indexOfRecipe].id)
+      for (let i = 0; i < {savedRecipes}.length; i++) {
+        savedRecipeIds.push(savedRecipes[i].id)
+      }
       if (savedRecipeIds.includes(recipes[indexOfRecipe].id)) {
-        console.log("setting to true")
         setCurrentRecipeIsSaved(true)
       } else {
         setCurrentRecipeIsSaved(false)
@@ -63,18 +58,32 @@ function App() {
   }
 
   const saveRecipe = async () => {
-    console.log(recipeToShow)
-    const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/save/" + recipes[recipeToShow].id
-    const saveRecipeResponse = await fetch(url, {credentials: "include"})
-    console.log(saveRecipeResponse)
-    const saveRecipeJson = await saveRecipeResponse.json()
-    console.log(saveRecipeJson)
-    if (saveRecipeJson.status === 200) {
-      await setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
-      console.log("recipeToShow")
-      console.log(recipeToShow)
+    try {
+      const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/save/" + recipes[recipeToShow].id
+      const saveRecipeResponse = await fetch(url, {credentials: "include"})
+      const saveRecipeJson = await saveRecipeResponse.json()
+      console.log(saveRecipeJson)
+      if (saveRecipeJson.status === 200) {
+        setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
+        setCurrentRecipeIsSaved(true)
+      }
+    } catch (err) {
+      console.log(err)
     }
-    checkForSavedRecipe(recipeToShow)
+  }
+
+  const getSavedRecipes = async () => {
+    try {
+      const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/saved/"
+      const getSavedRecipesResponse = await fetch(url, {credentials: "include"})
+      const getSavedRecipesJson = await getSavedRecipesResponse.json()
+      console.log(getSavedRecipesJson)
+      if (getSavedRecipesJson.status === 200) {
+        setRecipes(getSavedRecipesJson.data)
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -89,6 +98,7 @@ function App() {
         setSavedRecipes={setSavedRecipes}
         currentRecipeIsSaved={currentRecipeIsSaved}
         saveRecipe={saveRecipe}
+        getSavedRecipes={getSavedRecipes}
         />
       <h1>Chef Hopper</h1>
       {
