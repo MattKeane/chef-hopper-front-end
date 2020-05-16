@@ -9,7 +9,9 @@ export default function SaveToggleButton(props) {
 			{
 				props.currentRecipeIsSaved
 				?
-				<Menu.Item>
+				<Menu.Item
+					onClick={() => {props.deleteSavedRecipe()}}
+				>
 					Remove Saved Recipe
 				</Menu.Item>
 				:

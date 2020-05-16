@@ -21,6 +21,7 @@ export default function RecipeActions(props) {
 				<SaveToggleButton
 					currentRecipeIsSaved={props.currentRecipeIsSaved} 
 					saveRecipe={props.saveRecipe}
+					deleteSavedRecipe={props.deleteSavedRecipe}
 				/>
 			}
 		</React.Fragment>

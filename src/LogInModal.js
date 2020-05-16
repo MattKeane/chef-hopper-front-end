@@ -4,7 +4,6 @@ import { Modal, Input, Button } from "semantic-ui-react"
 export default function LogInModal(props) {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
-	const [message, setMessage] = useState("")
 
 	const closeLogInModal = () => {
 		props.setLoggingIn(false)
@@ -29,7 +28,7 @@ export default function LogInModal(props) {
 			onClose={closeLogInModal}
 		>
 			<div className="login-form">
-				<h3>Enter Email and Password</h3>
+				<h3>Enter Username and Password</h3>
 				<p>{props.message}</p>
 				<div>
 					<Input

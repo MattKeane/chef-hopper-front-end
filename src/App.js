@@ -31,7 +31,6 @@ function App() {
         if (searchJson.data.length > 0) {
           setRecipes(searchJson.data)
         } else {
-          console.log("No data")
           setMessage(searchJson.message)
         }
       }     
@@ -65,7 +64,6 @@ function App() {
         method: "POST"
       })
       const saveRecipeJson = await saveRecipeResponse.json()
-      console.log(saveRecipeJson)
       if (saveRecipeJson.status === 201) {
         setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
         setCurrentRecipeIsSaved(true)
@@ -82,7 +80,6 @@ function App() {
         credentials: "include",
         method: "GET"})
       const getSavedRecipesJson = await getSavedRecipesResponse.json()
-      console.log(getSavedRecipesJson)
       if (getSavedRecipesJson.status === 200) {
         setSavedRecipes(getSavedRecipesJson.data)
       }
@@ -123,12 +120,26 @@ function App() {
   const showSavedRecipes = () => {
     setRecipeToShow(-1)
     setRecipes(savedRecipes)
-    console.log(savedRecipes.length)
   }
 
   const showRecipe = (recipeIndex) => {
     setRecipeToShow(recipeIndex)
     checkForSavedRecipe(recipeIndex)
+  }
+
+  const deleteSavedRecipe = async () => {
+    const url = process.env.REACT_APP_API_URL + "/api/v1/users/saved_recipes/" + recipes[recipeToShow].id
+    const deleteRecipeResponse = await fetch(url, {
+      credentials: "include",
+      method: "DELETE"
+    })
+    const deleteRecipeJson = await deleteRecipeResponse.json()
+    if (deleteRecipeJson.status === 200) {
+      let updatedRecipes = recipes
+      updatedRecipes.splice(recipeToShow, 1)
+      setRecipeToShow(-1)
+      setRecipes(updatedRecipes)
+    }
   }
 
   return (
@@ -144,6 +155,7 @@ function App() {
         currentRecipeIsSaved={currentRecipeIsSaved}
         saveRecipe={saveRecipe}
         showSavedRecipes={showSavedRecipes}
+        deleteSavedRecipe={deleteSavedRecipe}
         />
       <h1>Chef Hopper</h1>
       {

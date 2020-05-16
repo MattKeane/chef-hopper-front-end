@@ -35,6 +35,7 @@ export default function NavBar(props) {
 					currentRecipeIsSaved={props.currentRecipeIsSaved}
 					currentUser={props.currentUser}
 					saveRecipe={props.saveRecipe}
+					deleteSavedRecipe={props.deleteSavedRecipe}
 				/>
 			}
 			{
