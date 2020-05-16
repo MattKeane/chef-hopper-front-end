@@ -15,8 +15,8 @@ export default function NavBar(props) {
 
 	const logOut = async () => {
 		try {
-			const url = process.env.REACT_APP_API_URL + "/api/v1/auth/logout/"
-			await fetch(url)
+			const url = process.env.REACT_APP_API_URL + "/api/v1/users/logout"
+			await fetch(url, {credentials: "include"})
 			props.setCurrentUser(false)
 			props.setSavedRecipes([])
 		} catch (err) {
