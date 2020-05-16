@@ -60,10 +60,13 @@ function App() {
   const saveRecipe = async () => {
     try {
       const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/save/" + recipes[recipeToShow].id
-      const saveRecipeResponse = await fetch(url, {credentials: "include"})
+      const saveRecipeResponse = await fetch(url, {
+        credentials: "include",
+        method: "POST"
+      })
       const saveRecipeJson = await saveRecipeResponse.json()
       console.log(saveRecipeJson)
-      if (saveRecipeJson.status === 200) {
+      if (saveRecipeJson.status === 201) {
         setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
         setCurrentRecipeIsSaved(true)
       }
@@ -74,16 +77,53 @@ function App() {
 
   const getSavedRecipes = async () => {
     try {
-      const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/saved/"
-      const getSavedRecipesResponse = await fetch(url, {credentials: "include"})
+      const url = process.env.REACT_APP_API_URL + "/api/v1/users/saved_recipes"
+      const getSavedRecipesResponse = await fetch(url, {
+        credentials: "include",
+        method: "GET"})
       const getSavedRecipesJson = await getSavedRecipesResponse.json()
       console.log(getSavedRecipesJson)
       if (getSavedRecipesJson.status === 200) {
-        setRecipes(getSavedRecipesJson.data)
+        setSavedRecipes(getSavedRecipesJson.data)
       }
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const logIn = async (username, password) => {
+    try {
+      const url = process.env.REACT_APP_API_URL + "/api/v1/users/login"
+      const payload = {
+        username: username,
+        password: password
+      }
+      const logInResponse = await fetch(url, {
+        credentials: "include",
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      if (logInResponse.status === 200) {
+        const logInJson = await logInResponse.json()
+        setCurrentUser(logInJson)
+        getSavedRecipes()
+        setRecipeToShow(-1)
+        setLoggingIn(false)
+      } else {
+        setMessage("Invalid username or password")
+      }
+    } catch (err) {
+      console.log(err)
+    }    
+  }
+
+  const showSavedRecipes = () => {
+    setRecipeToShow(-1)
+    setRecipes(savedRecipes)
+    console.log(savedRecipes.length)
   }
 
   return (
@@ -98,7 +138,7 @@ function App() {
         setSavedRecipes={setSavedRecipes}
         currentRecipeIsSaved={currentRecipeIsSaved}
         saveRecipe={saveRecipe}
-        getSavedRecipes={getSavedRecipes}
+        showSavedRecipes={showSavedRecipes}
         />
       <h1>Chef Hopper</h1>
       {
@@ -124,6 +164,8 @@ function App() {
           setLoggingIn={setLoggingIn}
           setCurrentUser={setCurrentUser}
           setSavedRecipes={setSavedRecipes}
+          logIn={logIn}
+          message={message}
         />
       }
       {

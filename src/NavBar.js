@@ -19,6 +19,7 @@ export default function NavBar(props) {
 			await fetch(url, {credentials: "include"})
 			props.setCurrentUser(false)
 			props.setSavedRecipes([])
+			props.setRecipeToShow(-1)
 		} catch (err) {
 			console.log(err)
 		}
@@ -40,7 +41,7 @@ export default function NavBar(props) {
 				props.currentUser
 				&&
 				<Menu.Item
-					onClick={ () => {props.getSavedRecipes()}}
+					onClick={ () => {props.showSavedRecipes()}}
 				>
 					Saved Recipes 
 				</Menu.Item>
