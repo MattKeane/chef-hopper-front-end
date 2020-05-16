@@ -32,8 +32,9 @@ export default function RegisterModal(props) {
 	const handleClick = async () => {
 		if (password === verifyPassword) {
 			try {
-				const url = process.env.REACT_APP_API_URL + "/api/v1/auth/register/"
+				const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
 				const payload = {
+					credentials: "include",
 					username: username,
 					email: email,
 					password: password
