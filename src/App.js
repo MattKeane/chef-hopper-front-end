@@ -44,7 +44,7 @@ function App() {
   const checkForSavedRecipe = (indexOfRecipe) => {
     if (indexOfRecipe !== -1) {
       const savedRecipeIds = []
-      for (let i = 0; i < {savedRecipes}.length; i++) {
+      for (let i = 0; i < savedRecipes.length; i++) {
         savedRecipeIds.push(savedRecipes[i].id)
       }
       if (savedRecipeIds.includes(recipes[indexOfRecipe].id)) {
@@ -126,6 +126,11 @@ function App() {
     console.log(savedRecipes.length)
   }
 
+  const showRecipe = (recipeIndex) => {
+    setRecipeToShow(recipeIndex)
+    checkForSavedRecipe(recipeIndex)
+  }
+
   return (
     <div className="App">
       <NavBar
@@ -147,7 +152,7 @@ function App() {
         <SearchView
           recipes={recipes}
           getRecipes={getRecipes}
-          showRecipe={setRecipeToShow}
+          showRecipe={showRecipe}
           message={message}
           loading={loading}
           checkForSavedRecipe={checkForSavedRecipe}        
