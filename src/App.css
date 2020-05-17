@@ -27,20 +27,39 @@ span.recipe-link:hover {
   text-decoration: underline;
 }
 
-div.recipe {
+div.recipe-light {
   margin: 0 auto;
   max-width: 750px;
   background-color: white;
+  color: black;
   padding: 20px;
   border-radius: 10px;
   border: 2px orange solid;
 }
 
-div.recipe h3 {
+div.recipe-light h3 {
   text-align: center;
 }
 
-div.recipe h5 {
+div.recipe-light h5 {
+  text-align: center;
+}
+
+div.recipe-dark {
+  margin: 0 auto;
+  max-width: 750px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px orange solid;
+}
+
+div.recipe-dark h3 {
+  text-align: center;
+}
+
+div.recipe-dark h5 {
   text-align: center;
 }
 
@@ -93,6 +112,32 @@ div.search-results {
 }
 
 div.search-results ul{
+  margin: 0 auto;
+}
+
+div.search-results-light {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  /*display: flex;*/
+  border: 2px orange solid;
+}
+
+div.search-results-light ul{
+  margin: 0 auto;
+}
+
+div.search-results-dark {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  /*display: flex;*/
+  border: 2px orange solid;
+}
+
+div.search-results-dark ul{
   margin: 0 auto;
 }
 

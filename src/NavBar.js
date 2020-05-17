@@ -1,6 +1,7 @@
 import React from "react"
-import { Menu } from "semantic-ui-react"
+import { Menu, Icon } from "semantic-ui-react"
 import RecipeActions from "./RecipeActions"
+import DarkModeToggle from "./DarkModeToggle"
 
 
 export default function NavBar(props) {
@@ -51,11 +52,16 @@ export default function NavBar(props) {
 				props.currentUser
 				?
 				<Menu.Menu position="right">
+					<Icon name="moon outline" />
 					<Menu.Item
 						onClick={logOut}
 					>
 						Log Out
 					</Menu.Item>
+					<DarkModeToggle
+						darkMode={props.darkMode}
+						setDarkMode={props.setDarkMode}
+					/>
 				</Menu.Menu>
 				:
 				<Menu.Menu position="right">
@@ -69,6 +75,10 @@ export default function NavBar(props) {
 					>
 						Register
 					</Menu.Item>
+					<DarkModeToggle
+						darkMode={props.darkMode}
+						setDarkMode={props.setDarkMode}
+					/>
 				</Menu.Menu>
 			}
 		</Menu>

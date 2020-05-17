@@ -22,6 +22,7 @@ export default function SearchView(props) {
 					recipes={props.recipes}
 					showRecipe={props.showRecipe}
 					checkForSavedRecipe={props.checkForSavedRecipe}
+					darkMode={props.darkMode}
 				/>
 			}
 		</div>

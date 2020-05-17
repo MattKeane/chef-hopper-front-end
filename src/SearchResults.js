@@ -7,6 +7,13 @@ export default function SearchResults(props) {
 		props.checkForSavedRecipe(recipeIndex)
 	}
 
+	const darkModeStyle = () => {
+		if (props.darkMode) {
+			return "search-results-dark"
+		}
+		return "search-results-light"
+	}
+
 	const recipes = props.recipes.map( (recipe, i) => {
 		return (
 			<p key={recipe.id}>
@@ -25,7 +32,7 @@ export default function SearchResults(props) {
 			{
 				(props.recipes.length > 0)
 				&&
-				<div className="search-results">
+				<div className={darkModeStyle()}>
 					{recipes}			
 				</div>		
 			}

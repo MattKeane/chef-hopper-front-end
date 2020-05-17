@@ -17,8 +17,16 @@ export default function RecipeView(props) {
 			</li>
 		)
 	})
+
+	const darkModeStyle = () => {
+		if (props.darkMode) {
+			return "recipe-dark"
+		}
+		return "recipe-light"
+	}
+
 	return (
-		<div className="recipe">
+		<div className={darkModeStyle()}>
 			<h3>{props.recipe.title}</h3>
 			<h5>Ingredients</h5>
 			<div className="ingredients">

@@ -17,6 +17,7 @@ function App() {
   const [registering, setRegistering] = useState(false)
   const [savedRecipes, setSavedRecipes] = useState([])
   const [currentRecipeIsSaved, setCurrentRecipeIsSaved] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -156,6 +157,8 @@ function App() {
         saveRecipe={saveRecipe}
         showSavedRecipes={showSavedRecipes}
         deleteSavedRecipe={deleteSavedRecipe}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
         />
       <h1>Chef Hopper</h1>
       {
@@ -167,11 +170,13 @@ function App() {
           showRecipe={showRecipe}
           message={message}
           loading={loading}
-          checkForSavedRecipe={checkForSavedRecipe}        
+          checkForSavedRecipe={checkForSavedRecipe}
+          darkMode={darkMode}        
         />
         :
         <RecipeView
           recipe={recipes[recipeToShow]}
+          darkMode={darkMode}
         />
       }
       {
