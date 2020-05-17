@@ -65,6 +65,7 @@ function App() {
         method: "POST"
       })
       const saveRecipeJson = await saveRecipeResponse.json()
+      console.log(saveRecipeJson)
       if (saveRecipeJson.status === 201) {
         setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
         setCurrentRecipeIsSaved(true)
@@ -81,6 +82,7 @@ function App() {
         credentials: "include",
         method: "GET"})
       const getSavedRecipesJson = await getSavedRecipesResponse.json()
+      console.log(getSavedRecipesJson)
       if (getSavedRecipesJson.status === 200) {
         setSavedRecipes(getSavedRecipesJson.data)
       }

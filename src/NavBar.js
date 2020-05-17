@@ -52,7 +52,6 @@ export default function NavBar(props) {
 				props.currentUser
 				?
 				<Menu.Menu position="right">
-					<Icon name="moon outline" />
 					<Menu.Item
 						onClick={logOut}
 					>
