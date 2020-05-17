@@ -31,10 +31,12 @@ export default function SearchResults(props) {
 		<React.Fragment>
 			{
 				(props.recipes.length > 0)
-				&&
+				?
 				<div className={darkModeStyle()}>
 					{recipes}			
-				</div>		
+				</div>
+				:
+				<img className="chef-hopper" src="chef-hopper.png" />	
 			}
 		</React.Fragment>
 	)

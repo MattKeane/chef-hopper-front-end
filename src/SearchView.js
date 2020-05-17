@@ -13,10 +13,10 @@ export default function SearchView(props) {
 			<p>{props.message}</p>
 			{
 				props.loading
-				?
+				?				
 				<Loader active>
-					Hopping to your recipes
-				</Loader>
+					<p>Hopping to your recipes</p>
+				</Loader>				
 				:
 				<SearchResults
 					recipes={props.recipes}

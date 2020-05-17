@@ -160,7 +160,7 @@ function App() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         />
-      <h1>Chef Hopper</h1>
+      <img className="header" src="header.png" />
       {
         recipeToShow === -1
         ?

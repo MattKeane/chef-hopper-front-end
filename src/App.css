@@ -145,3 +145,19 @@ div.register-field {
   display: flex;
   flex-direction: column;
 }
+
+img.header {
+  width: 350px;
+  margin: 0 auto 10px;
+}
+
+@media(max-width: 375px) {
+  img.header {
+    width: 200px;
+  }
+}
+
+img.chef-hopper {
+  width: 200px;
+  margin: 0 auto;
+}
