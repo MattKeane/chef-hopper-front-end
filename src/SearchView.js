@@ -16,6 +16,7 @@ export default function SearchView(props) {
 				?				
 				<Loader active>
 					<p>Hopping to your recipes</p>
+					<p><small>(this may take a minute)</small></p>
 				</Loader>				
 				:
 				<SearchResults
