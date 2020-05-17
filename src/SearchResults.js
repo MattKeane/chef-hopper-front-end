@@ -21,8 +21,14 @@ export default function SearchResults(props) {
 	})
 
 	return(
-		<div className="search-results">
-			{recipes}			
-		</div>
+		<React.Fragment>
+			{
+				(props.recipes.length > 0)
+				&&
+				<div className="search-results">
+					{recipes}			
+				</div>		
+			}
+		</React.Fragment>
 	)
 }

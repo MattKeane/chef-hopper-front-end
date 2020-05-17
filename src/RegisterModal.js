@@ -71,7 +71,7 @@ export default function RegisterModal(props) {
 			<div className="register-form">
 				<h3>Enter Registration Information</h3>
 				<p>{message}</p>
-				<div>
+				<div className="register-field">
 					<Input
 						label="Username"
 						placeholder="Enter Username"
@@ -80,7 +80,7 @@ export default function RegisterModal(props) {
 						onChange={handleUsernameChange}
 					/>
 				</div>
-				<div>
+				<div className="register-field">
 					<Input
 						label="Email"
 						placeholder="Enter Email"
@@ -89,7 +89,7 @@ export default function RegisterModal(props) {
 						onChange={handleEmailChange}
 					/>
 				</div>
-				<div>
+				<div className="register-field">
 					<Input
 						type="password"
 						label="Password"
@@ -98,7 +98,7 @@ export default function RegisterModal(props) {
 						onChange={handlePasswordChange}
 					/>
 				</div>
-				<div>
+				<div className="register-field">
 					<Input
 						type="password"
 						label="Re-enter Password"
