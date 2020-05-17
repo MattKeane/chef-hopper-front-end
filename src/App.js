@@ -65,7 +65,6 @@ function App() {
         method: "POST"
       })
       const saveRecipeJson = await saveRecipeResponse.json()
-      console.log(saveRecipeJson)
       if (saveRecipeJson.status === 201) {
         setSavedRecipes([recipes[recipeToShow], ...savedRecipes])
         setCurrentRecipeIsSaved(true)
@@ -82,7 +81,6 @@ function App() {
         credentials: "include",
         method: "GET"})
       const getSavedRecipesJson = await getSavedRecipesResponse.json()
-      console.log(getSavedRecipesJson)
       if (getSavedRecipesJson.status === 200) {
         setSavedRecipes(getSavedRecipesJson.data)
       }
@@ -145,6 +143,38 @@ function App() {
     }
   }
 
+  const registerUser = async (username, email, password, verifyPassword) => {
+    if (password === verifyPassword) {
+      try {
+        const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
+        const payload = {
+          credentials: "include",
+          username: username,
+          email: email,
+          password: password
+        }
+        const registerResponse = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        const registerJson = await registerResponse.json()
+        if (registerJson.status === 201) {
+          setCurrentUser(registerJson.data)
+          setRegistering(false)
+        } else {
+          setMessage(registerJson.message)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      setMessage("Passwords must match")
+    }
+  }
+
   return (
     <div className="App">
       <NavBar
@@ -162,7 +192,7 @@ function App() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         />
-      <img className="header" src="header.png" />
+      <img className="header" src="header.png" alt="Chef Hopper" />
       {
         recipeToShow === -1
         ?
@@ -196,8 +226,9 @@ function App() {
         registering
         &&
         <RegisterModal
+          message={message}
+          registerUser={registerUser}
           setRegistering={setRegistering}
-          setCurrentUser={setCurrentUser}
         />
       }
     </div>

@@ -36,7 +36,7 @@ export default function SearchResults(props) {
 					{recipes}			
 				</div>
 				:
-				<img className="chef-hopper" src="chef-hopper.png" />	
+				<img className="chef-hopper" src="chef-hopper.png" alt="" />	
 			}
 		</React.Fragment>
 	)

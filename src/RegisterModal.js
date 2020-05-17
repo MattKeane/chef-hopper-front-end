@@ -7,7 +7,6 @@ export default function RegisterModal(props) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [verifyPassword, setVerifyPassword] = useState("")
-	const [message, setMessage] = useState("")
 
 	const closeRegisterModal = () => {
 		props.setRegistering(false)
@@ -29,36 +28,8 @@ export default function RegisterModal(props) {
 		setVerifyPassword(e.target.value)
 	}
 
-	const handleClick = async () => {
-		if (password === verifyPassword) {
-			try {
-				const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
-				const payload = {
-					credentials: "include",
-					username: username,
-					email: email,
-					password: password
-				}
-				const registerResponse = await fetch(url, {
-					method: "POST",
-					body: JSON.stringify(payload),
-					headers: {
-						"Content-Type": "application/json"
-					}
-				})
-				const registerJson = await registerResponse.json()
-				if (registerJson.status === 201) {
-					props.setCurrentUser(registerJson.data)
-					closeRegisterModal()
-				} else {
-					setMessage(registerJson.message)
-				}
-			} catch (err) {
-				console.log(err)
-			}
-		} else {
-			setMessage("Passwords must match")
-		}
+	const handleClick = () => {
+		props.registerUser(username, email, password, verifyPassword)
 	}
 
 
@@ -70,7 +41,7 @@ export default function RegisterModal(props) {
 		>
 			<div className="register-form">
 				<h3>Enter Registration Information</h3>
-				<p>{message}</p>
+				<p>{props.message}</p>
 				<div className="register-field">
 					<Input
 						label="Username"
