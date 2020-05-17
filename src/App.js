@@ -91,6 +91,7 @@ function App() {
 
   const logIn = async (username, password) => {
     try {
+      setMessage("")
       const url = process.env.REACT_APP_API_URL + "/api/v1/users/login"
       const payload = {
         username: username,
