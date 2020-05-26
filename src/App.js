@@ -5,7 +5,7 @@ import RecipeView from "./RecipeView"
 import NavBar from "./NavBar"
 import LogInModal from "./LogInModal"
 import RegisterModal from "./RegisterModal"
-
+import ThemeContext from "./ThemeContext"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -18,6 +18,13 @@ function App() {
   const [savedRecipes, setSavedRecipes] = useState([])
   const [currentRecipeIsSaved, setCurrentRecipeIsSaved] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
+
+  const pickTheme = () => {
+    if (darkMode) {
+      return "dark"
+    }
+    return "light"
+  }
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -34,7 +41,7 @@ function App() {
         } else {
           setMessage(searchJson.message)
         }
-      }     
+      }
       setLoading(false)
     } catch (err) {
       console.log(err)
@@ -116,7 +123,7 @@ function App() {
       }
     } catch (err) {
       console.log(err)
-    }    
+    }
   }
 
   const showSavedRecipes = () => {
@@ -178,61 +185,63 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar
-        recipeToShow={recipeToShow}
-        setRecipeToShow={setRecipeToShow}
-        currentUser={currentUser}
-        setLoggingIn={setLoggingIn}
-        setCurrentUser={setCurrentUser}
-        setRegistering={setRegistering}
-        setSavedRecipes={setSavedRecipes}
-        currentRecipeIsSaved={currentRecipeIsSaved}
-        saveRecipe={saveRecipe}
-        showSavedRecipes={showSavedRecipes}
-        deleteSavedRecipe={deleteSavedRecipe}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        />
-      <img className="header" src="header.png" alt="Chef Hopper" />
-      {
-        recipeToShow === -1
-        ?
-        <SearchView
-          recipes={recipes}
-          getRecipes={getRecipes}
-          showRecipe={showRecipe}
-          message={message}
-          loading={loading}
-          checkForSavedRecipe={checkForSavedRecipe}
-          darkMode={darkMode}        
-        />
-        :
-        <RecipeView
-          recipe={recipes[recipeToShow]}
-          darkMode={darkMode}
-        />
-      }
-      {
-        loggingIn
-        &&
-        <LogInModal
+      // <ThemeContext.provider value={pickTheme}>
+        <NavBar
+          recipeToShow={recipeToShow}
+          setRecipeToShow={setRecipeToShow}
+          currentUser={currentUser}
           setLoggingIn={setLoggingIn}
           setCurrentUser={setCurrentUser}
-          setSavedRecipes={setSavedRecipes}
-          logIn={logIn}
-          message={message}
-        />
-      }
-      {
-        registering
-        &&
-        <RegisterModal
-          message={message}
-          registerUser={registerUser}
           setRegistering={setRegistering}
-        />
-      }
-    </div>
+          setSavedRecipes={setSavedRecipes}
+          currentRecipeIsSaved={currentRecipeIsSaved}
+          saveRecipe={saveRecipe}
+          showSavedRecipes={showSavedRecipes}
+          deleteSavedRecipe={deleteSavedRecipe}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          />
+          <img className="header" src="header.png" alt="Chef Hopper" />
+          {
+            recipeToShow === -1
+            ?
+            <SearchView
+            recipes={recipes}
+            getRecipes={getRecipes}
+            showRecipe={showRecipe}
+            message={message}
+            loading={loading}
+            checkForSavedRecipe={checkForSavedRecipe}
+            darkMode={darkMode}
+            />
+            :
+            <RecipeView
+            recipe={recipes[recipeToShow]}
+            darkMode={darkMode}
+            />
+          }
+          {
+            loggingIn
+            &&
+            <LogInModal
+            setLoggingIn={setLoggingIn}
+            setCurrentUser={setCurrentUser}
+            setSavedRecipes={setSavedRecipes}
+            logIn={logIn}
+            message={message}
+            />
+          }
+          {
+            registering
+            &&
+            <RegisterModal
+            message={message}
+            registerUser={registerUser}
+            setRegistering={setRegistering}
+            />
+          }
+          // </ThemeContext.provider>
+        </div>
   );
 }
 

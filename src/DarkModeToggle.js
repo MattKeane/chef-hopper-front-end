@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import {Menu, Icon} from "semantic-ui-react"
 
 export default function DarkModeToggle(props) {
@@ -12,7 +12,7 @@ export default function DarkModeToggle(props) {
 			onClick={toggleDarkMode}
 		>
 			{
-				props.darkMode
+				(props.darkMode)
 				?
 				<Icon name="moon" />
 				:
