@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useContext } from "react"
+import DarkModeContext from "./DarkModeContext"
 
 export default function SearchResults(props) {
 
@@ -7,8 +8,10 @@ export default function SearchResults(props) {
 		props.checkForSavedRecipe(recipeIndex)
 	}
 
+	const darkMode = useContext(DarkModeContext)
+
 	const darkModeStyle = () => {
-		if (props.darkMode) {
+		if (darkMode) {
 			return "search-results-dark"
 		}
 		return "search-results-light"
@@ -17,7 +20,7 @@ export default function SearchResults(props) {
 	const recipes = props.recipes.map( (recipe, i) => {
 		return (
 			<p key={recipe.id}>
-				<span 
+				<span
 					className="recipe-link"
 					onClick={ () => {handleClick(i)}}
 				>
@@ -33,10 +36,10 @@ export default function SearchResults(props) {
 				(props.recipes.length > 0)
 				?
 				<div className={darkModeStyle()}>
-					{recipes}			
+					{recipes}
 				</div>
 				:
-				<img className="chef-hopper" src="chef-hopper.png" alt="" />	
+				<img className="chef-hopper" src="chef-hopper.png" alt="" />
 			}
 		</React.Fragment>
 	)

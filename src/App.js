@@ -5,7 +5,7 @@ import RecipeView from "./RecipeView"
 import NavBar from "./NavBar"
 import LogInModal from "./LogInModal"
 import RegisterModal from "./RegisterModal"
-import ThemeContext from "./ThemeContext"
+import DarkModeContext from "./DarkModeContext"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -19,12 +19,23 @@ function App() {
   const [currentRecipeIsSaved, setCurrentRecipeIsSaved] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
 
-  const pickTheme = () => {
-    if (darkMode) {
-      return "dark"
-    }
-    return "light"
-  }
+/* State defined:
+loading: whether the app is awaiting results from the backend
+recipes: recipes currently loaded for display
+recipeToShow: the index of the recipe in recipes currently being display
+  equal to -1 if no recipe is current being shown
+message: Flash messaging
+currentUser: an object representing the currently logged in user, if any
+loggingIn: whether LogInModal should be open
+registering: whether RegisterModal should be open
+savedRecipes: an array containing recipe objects saved by the current user
+currentRecipeIsSaved: whether the currently displayed recipe
+has been saved by currentUser
+  false if no user is logged in
+darkMode: determines whether dark or light themes are currently used
+*/
+
+
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -185,7 +196,7 @@ function App() {
 
   return (
     <div className="App">
-      // <ThemeContext.provider value={pickTheme}>
+      <DarkModeContext.Provider value={darkMode}>
         <NavBar
           recipeToShow={recipeToShow}
           setRecipeToShow={setRecipeToShow}
@@ -198,7 +209,6 @@ function App() {
           saveRecipe={saveRecipe}
           showSavedRecipes={showSavedRecipes}
           deleteSavedRecipe={deleteSavedRecipe}
-          darkMode={darkMode}
           setDarkMode={setDarkMode}
           />
           <img className="header" src="header.png" alt="Chef Hopper" />
@@ -212,12 +222,10 @@ function App() {
             message={message}
             loading={loading}
             checkForSavedRecipe={checkForSavedRecipe}
-            darkMode={darkMode}
             />
             :
             <RecipeView
             recipe={recipes[recipeToShow]}
-            darkMode={darkMode}
             />
           }
           {
@@ -240,8 +248,8 @@ function App() {
             setRegistering={setRegistering}
             />
           }
-          // </ThemeContext.provider>
-        </div>
+        </DarkModeContext.Provider>
+      </div>
   );
 }
 

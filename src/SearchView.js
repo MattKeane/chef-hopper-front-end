@@ -13,17 +13,16 @@ export default function SearchView(props) {
 			<p>{props.message}</p>
 			{
 				props.loading
-				?				
+				?
 				<Loader active>
 					<p>Hopping to your recipes</p>
 					<p><small>(this may take a minute)</small></p>
-				</Loader>				
+				</Loader>
 				:
 				<SearchResults
 					recipes={props.recipes}
 					showRecipe={props.showRecipe}
 					checkForSavedRecipe={props.checkForSavedRecipe}
-					darkMode={props.darkMode}
 				/>
 			}
 		</div>

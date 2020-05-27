@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useContext } from "react"
+import DarkModeContext from "./DarkModeContext"
 
 export default function RecipeView(props) {
 
@@ -18,8 +19,10 @@ export default function RecipeView(props) {
 		)
 	})
 
+	const darkMode = useContext(DarkModeContext)
+
 	const darkModeStyle = () => {
-		if (props.darkMode) {
+		if (darkMode) {
 			return "recipe-dark"
 		}
 		return "recipe-light"
@@ -35,7 +38,7 @@ export default function RecipeView(props) {
 				</ul>
 			</div>
 			<h5>Instructions</h5>
-			<div className="instructions">			
+			<div className="instructions">
 				<ol className="instruction-list">
 					{instructions}
 				</ol>

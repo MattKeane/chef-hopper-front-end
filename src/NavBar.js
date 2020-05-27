@@ -3,16 +3,24 @@ import { Menu } from "semantic-ui-react"
 import RecipeActions from "./RecipeActions"
 import DarkModeToggle from "./DarkModeToggle"
 
+// This component is the navigation bar that appears on top of the page
+// Menu components render dynamically
 
 export default function NavBar(props) {
 
+	// Changes loggingIn in the state of app.js to true
+
 	const openLogInModal = () => {
-		props.setLoggingIn(true)	
+		props.setLoggingIn(true)
 	}
+
+	// Changes registering in the state of app.js to true
 
 	const openRegisterModal = () => {
 		props.setRegistering(true)
 	}
+
+	// ends session on both front and back end
 
 	const logOut = async () => {
 		try {
@@ -29,6 +37,12 @@ export default function NavBar(props) {
 	return (
 		<Menu>
 			{
+				// Until noted otherwise, the following components
+				// Render on the left side of the navigation bar
+
+				// recipe actions are only visible
+				// when the user is looking at a recipe
+
 				props.recipeToShow !== -1
 				&&
 				<RecipeActions
@@ -40,15 +54,26 @@ export default function NavBar(props) {
 				/>
 			}
 			{
+
+				// Saved recipes can only be accessed when a
+				// user is logged in
+
 				props.currentUser
 				&&
 				<Menu.Item
 					onClick={ () => {props.showSavedRecipes()}}
 				>
-					Saved Recipes 
+					Saved Recipes
 				</Menu.Item>
 			}
 			{
+				// The rest of the components render on the right
+				// side of the navtigation bar
+
+				// All these actions are account related, except DarkModeToggle
+
+				// LogOut button is only available when a user is logged in
+
 				props.currentUser
 				?
 				<Menu.Menu position="right">
@@ -58,11 +83,13 @@ export default function NavBar(props) {
 						Log Out
 					</Menu.Item>
 					<DarkModeToggle
-						darkMode={props.darkMode}
 						setDarkMode={props.setDarkMode}
 					/>
 				</Menu.Menu>
 				:
+
+				// LogIn/Registration is only avaiable when no user is logged in
+
 				<Menu.Menu position="right">
 					<Menu.Item
 						onClick={openLogInModal}
@@ -75,7 +102,6 @@ export default function NavBar(props) {
 						Register
 					</Menu.Item>
 					<DarkModeToggle
-						darkMode={props.darkMode}
 						setDarkMode={props.setDarkMode}
 					/>
 				</Menu.Menu>
