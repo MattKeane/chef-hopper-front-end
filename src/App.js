@@ -36,6 +36,7 @@ darkMode: determines whether dark or light themes are currently used
 */
 
 
+// Fetches recipes from the server
 
   const getRecipes = async (searchTerm) => {
     try {
@@ -59,6 +60,7 @@ darkMode: determines whether dark or light themes are currently used
     }
   }
 
+// Checks if the currently selected recipe has been saved by the user
   const checkForSavedRecipe = (indexOfRecipe) => {
     if (indexOfRecipe !== -1) {
       const savedRecipeIds = []
@@ -75,6 +77,7 @@ darkMode: determines whether dark or light themes are currently used
     }
   }
 
+// Adds the current recipe to the user's saved recipes
   const saveRecipe = async () => {
     try {
       const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/save/" + recipes[recipeToShow].id
@@ -92,6 +95,7 @@ darkMode: determines whether dark or light themes are currently used
     }
   }
 
+// fetches the user's saved recipes
   const getSavedRecipes = async () => {
     try {
       const url = process.env.REACT_APP_API_URL + "/api/v1/users/saved_recipes"
@@ -106,6 +110,8 @@ darkMode: determines whether dark or light themes are currently used
       console.log(err)
     }
   }
+
+// logs the user in
 
   const logIn = async (username, password) => {
     try {
@@ -137,15 +143,21 @@ darkMode: determines whether dark or light themes are currently used
     }
   }
 
+// switches the recipes displayed to those saved by the user
+
   const showSavedRecipes = () => {
     setRecipeToShow(-1)
     setRecipes(savedRecipes)
   }
 
+// selects a recipe to show
+
   const showRecipe = (recipeIndex) => {
     setRecipeToShow(recipeIndex)
     checkForSavedRecipe(recipeIndex)
   }
+
+// removes a saved recipe from the user's saved recipes
 
   const deleteSavedRecipe = async () => {
     const url = process.env.REACT_APP_API_URL + "/api/v1/users/saved_recipes/" + recipes[recipeToShow].id
@@ -161,6 +173,8 @@ darkMode: determines whether dark or light themes are currently used
       setRecipes(updatedRecipes)
     }
   }
+
+// registers a new user account
 
   const registerUser = async (username, email, password, verifyPassword) => {
     if (password === verifyPassword) {
