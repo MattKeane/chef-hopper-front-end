@@ -6,6 +6,7 @@ import NavBar from "./NavBar"
 import LogInModal from "./LogInModal"
 import RegisterModal from "./RegisterModal"
 import DarkModeContext from "./DarkModeContext"
+import DisclaimerModal from "./DisclaimerModal"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -18,6 +19,7 @@ function App() {
   const [savedRecipes, setSavedRecipes] = useState([])
   const [currentRecipeIsSaved, setCurrentRecipeIsSaved] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
+  const [showDisclaimer, setShowDisclaimer] = useState(true)
 
 /* State defined:
 loading: whether the app is awaiting results from the backend
@@ -240,6 +242,13 @@ darkMode: determines whether dark or light themes are currently used
             :
             <RecipeView
             recipe={recipes[recipeToShow]}
+            />
+          }
+          {
+            showDisclaimer
+            &&
+            <DisclaimerModal
+            setShowDisclaimer={setShowDisclaimer}
             />
           }
           {
